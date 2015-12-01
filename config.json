@@ -1,0 +1,28 @@
+{
+    "servicePort": 3000,
+    "nginxProxy": false,
+    "emailHost": "smtp.qq.com",
+    "emailAccount": "123456@qq.com",
+    "emailPassword": "123456",
+    "nextChangeTime": 0,
+    "noticeDomain": "http://127.0.0.1:3000/",
+    "shadowsocksPath": "/usr/bin/ssserver",
+    "shadowsocksConfig": "/etc/shadowsocks.json",
+    "shadowsocksDefaultConfig": {
+        "server": "0.0.0.0",
+        "server_port": 1000,
+        "local_port": 1080,
+        "password": "123456",
+        "timeout": 300,
+        "method": "aes-256-cfb"
+    },
+    "autoChangeTimer": 864000,
+    "nextChangPort": true,
+    "nextChangePassword": false,
+    "nextChangePortMin": 60000,
+    "nextChangePortMax": 65000,
+    "reportUsers": [
+        "123456@qq.com"
+    ],
+    "reportExpireTime": 900
+}

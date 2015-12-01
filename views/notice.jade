@@ -1,0 +1,38 @@
+﻿html
+    meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+    link(rel='stylesheet', href='assets/v5/plugins/boostrapv3/css/bootstrap.min.css')
+    link(rel='stylesheet', href='assets/v5/plugins/boostrapv3/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='assets/v5/plugins/font-awesome/css/font-awesome.css')
+    link(rel='stylesheet', href='assets/v5/css/animate.min.css')
+    link(rel='stylesheet', href='assets/v5/css/style.css')
+    link(rel='stylesheet', href='assets/v5/css/responsive.css')
+body(class="error-body no-top lazy")
+    div(class="container")
+        div(div class="row login-container")
+            div(div class="col-md-7 col-md-offset-2 tiles white no-padding")
+                div(class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10" id="noticeContent")
+                    
+                    - if (found)
+                        h2 Shadowsocks配置更换通知
+                        - if (port == '')
+                            p 端口: 暂无变化
+                        - else
+                            p 端口: #{port}
+                        
+                        - if (password == '')
+                            p 密码: 暂无变化
+                        - else
+                            p 密码:#{password}
+                        p 本条消息将在
+                            span(id="countDown") #{expire}
+                            span 秒后删除#{ip.length}
+                        - if (ipCount > 1)
+                            br
+                            p 在您之前已有#{ipCount-1}位阅读了这条消息, IP如下:
+                            - for(var item in ip)
+                                - if (clientIp != item)
+                                     p #{item}                                                          
+                     - else
+                        p 本条通知未找到或已过期
+    script(src="assets/v5/plugins/jquery-1.8.3.min.js")
+    script(src="ss.js")

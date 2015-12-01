@@ -1,0 +1,18 @@
+{
+  "name": "ShadowsocksTools",
+  "version": "0.0.1",
+  "description": "Auto change Shadowsocks service port or password and report emails",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Srar/ShadowsocksTools.git"
+  },
+  "author": "Srar",
+  "license": "Unlicense",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "node-uuid": "^1.4.7",
+    "nodemailer": "^1.10.0"
+  }
+}
