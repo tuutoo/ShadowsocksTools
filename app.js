@@ -22,13 +22,13 @@ app.use(express.static(__dirname + '/public'));
 
 // 判断Shadowsocks是否已经安装
 if(!fs.existsSync(config.shadowsocksPath)){
-    console.error('Shadowsocks不存在, 请确认您是否已经安装了Shadowsocks.');
+    console.error('Shadowsocks does\'t exist, Please check Shadowsocks is already installed.');
     process.exit(1);
 }
 
 // 判断Shadowsocks配置文件是否存在
 if(!fs.existsSync(config.shadowsocksConfig)){
-    console.info('Shadowsocks配置文件不存在,将自动按default创建.');
+    console.info('Shadowsocks config does\'t exist,will create default configuration.');
     fs.writeFileSync(config.shadowsocksConfig, JSON.stringify(config.shadowsocksDefaultConfig, null, 4));
 }
 
@@ -49,16 +49,16 @@ function checkChangeTime(){
         ]);
 
         shadowsocksProcess.on('error',function(data){
-            process.stdout.write('shadowsocks启动失败:' + data.toString("utf-8"));
+            process.stdout.write('Shadowsocks launch error:' + data.toString("utf-8"));
         });
         shadowsocksProcess.stdout.on('data', function(data){
-            process.stdout.write('shadowsocks输出:'+data.toString("utf-8"));
+            process.stdout.write('Shadowsocks output:'+data.toString("utf-8"));
         });
         shadowsocksProcess.stderr.on('data', function(data){
-            process.stdout.write('shadowsocks输出:'+ data.toString("utf-8"));
+            process.stdout.write('Shadowsocks output:'+ data.toString("utf-8"));
         });
         shadowsocksProcess.on('exit', function (code) {
-            console.log('shadowsocks进程退出 code:', code);
+            console.log('Shadowsocks exit code:', code);
             shadowsocksProcess = null;
         });
         return;
@@ -73,11 +73,11 @@ function checkChangeTime(){
 
     // 判断SS配置是否存在 防止在检测间隔期间被删除
     if(!fs.existsSync(config.shadowsocksConfig)){
-        console.info('Shadowsocks配置文件不存在,将自动按default创建.');
+        console.info('Shadowsocks config does\'t exist,will create default configuration.');
         fs.writeFileSync(config.shadowsocksConfig, JSON.stringify(config.shadowsocksDefaultConfig, null, 4));
     }
 
-    console.log('Shadowsocks配置更新端口: ', config.nextChangPort ? newPort : '未更新', '密码:', config.nextChangePassword ? newPassword : '未更新');
+    console.log('Shadowsocks configuration update Port: ', config.nextChangPort ? newPort : 'no change', 'Password:', config.nextChangePassword ? newPassword : 'no change');
 
     // 更新密码或端口 重新写入Shadowsocks配置文件
     var shadowsocksConfig = JSON.parse(fs.readFileSync(config.shadowsocksConfig,'utf-8'));
@@ -100,7 +100,7 @@ function checkChangeTime(){
         };
 
         //发送通知邮件
-        email.sendEmail(item, 'Shadowsocks配置更换通知', '请点击<a href="' + noticeDomain + '">连接</a>继续操作', function(err, result){
+        email.sendEmail(item, 'Shadowsocks configuration update', 'Please click<a href="' + noticeDomain + '">here</a> continue.', function(err, result){
             if(err) return console.error('Send email to ', item, 'error', err);
             fs.writeFileSync('./data/' + noticeId + '.json', JSON.stringify(noticeData, null, 4));
         });
@@ -144,5 +144,5 @@ app.get('/:noticeId', function (req, res) {
 });
 
 var server = app.listen(config.servicePort, function () {
-    console.log('端口监听:', config.servicePort);
+    console.log('Shadowsocks Tools listening at:', config.servicePort);
 });
