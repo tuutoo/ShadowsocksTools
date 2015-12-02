@@ -100,7 +100,7 @@ function checkChangeTime(){
         };
 
         //发送通知邮件
-        email.sendEmail(item, 'Shadowsocks configuration update', 'Please click<a href="' + noticeDomain + '">here</a> continue.', function(err, result){
+        email.sendEmail(item, 'Shadowsocks configuration update', 'Please click <a href="' + noticeDomain + '">here</a> continue.', function(err, result){
             if(err) return console.error('Send email to ', item, 'error', err);
             fs.writeFileSync('./data/' + noticeId + '.json', JSON.stringify(noticeData, null, 4));
         });
